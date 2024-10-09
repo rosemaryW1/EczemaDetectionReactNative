@@ -1,70 +1,86 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ImageBackground
+      source={require('../../assets/images/eczema_logo.png')}
+      style={styles.background}
+      resizeMode="cover" // Ensures the image covers the entire screen
+      // blurRadius={1} 
+    >
+      {/* Pink overlay for consistent color */}
+      <View style={styles.overlay}>
+        {/* Content inside the overlay */}
+        <View style={styles.contentContainer}>
+          <Text style={styles.title}>Welcome to Eczema Pro!</Text>
+          <Text style={styles.subtitle}>
+            Use this app to analyze skin conditions and detect eczema with ease.
+          </Text>
+
+          {/* Buttons */}
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button} onPress={() => console.log('Capture')}>
+              <Text style={styles.buttonText}>Capture Image</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => console.log('Results')}>
+              <Text style={styles.buttonText}>View Results</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  background: {
+    flex: 1, // Make sure it covers the full screen
+    width: viewportWidth, // Full width of the viewport
+    height: viewportHeight, // Full height of the viewport
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 182, 193, 0.5)', // Light pink overlay with transparency
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  contentContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  title: {
+    fontSize: 31,
+    fontWeight: '900',
+    color: '#FF1493', // White text to contrast with the pink overlay
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: '#FF1493',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 30,
+    width: '80%',
+  },
+  button: {
+    backgroundColor: '#FF69B4', // Pink button
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 8,
+    marginHorizontal: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

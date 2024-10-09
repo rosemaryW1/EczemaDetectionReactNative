@@ -6,12 +6,18 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "types": [
+      "react",
+      "react-native",
+      "react-native-elements" // Ensure third-party types are included
+    ]
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules" // Exclude node_modules to avoid conflicts
   ]
 }

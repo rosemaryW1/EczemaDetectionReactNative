@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode", // Prettier for code formatting
+    "dbaeumer.vscode-eslint", // ESLint for linting JavaScript/TypeScript
+    "formulahendry.auto-close-tag", // Auto Close Tag for JSX/HTML
+    "formulahendry.auto-rename-tag" // Auto Rename Tag for JSX/HTML
+  ]
+}
